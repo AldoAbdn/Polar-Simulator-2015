@@ -1,6 +1,5 @@
 #Alistair Quinn
-#HND Software Development: Programming Foundation Assessment
-#Polar Simulator 2015 v1.0 - 20/03/2016
+#Polar Simulator 2015 v2.0 - 25/10/2024
 #Simple game were you shoot sprites and tally score 
 
 #Imports and intitializes pygame module, sys for exiting game, and random to generate rand ints for spawning enemies
@@ -290,10 +289,8 @@ def main():
         startMenu()
         #Runs game, stores returned score when completed
         score = game()
-        print score
         #When the game is over, if user decides to play again true is returned and score is returned as 0
         gameOver(score)
-
         #If game hasn't ended, Resets Enemy class list
         Enemy.reset()
 
