@@ -55,8 +55,8 @@ class Button(Text):
 class Player: 
     def __init__(self):
         #Scales sprite and crates right and left facing images, sets direction and updates Rec 
-        self.rightImage = pygame.transform.smoothscale(pygame.image.load("player.png"), (100, 200)).convert_alpha()
-        self.leftImage = pygame.transform.flip(pygame.transform.smoothscale(pygame.image.load("player.png"), (100, 200)), True, False).convert_alpha()
+        self.rightImage = pygame.transform.smoothscale(pygame.image.load("assets/player.png"), (100, 200)).convert_alpha()
+        self.leftImage = pygame.transform.flip(pygame.transform.smoothscale(pygame.image.load("assets/player.png"), (100, 200)), True, False).convert_alpha()
         self.image = self.leftImage
         self.facingLeft = True
         self.speed = 5
@@ -114,19 +114,19 @@ class Enemy:
     #Used to keep track of time for events
     time = 0.00
     #Death sound
-    death = pygame.mixer.Sound("death.ogg")
+    death = pygame.mixer.Sound("assets/death.ogg")
 
     def __init__(self):
         #If isLeft True, Creates sprite on left side of screen 
         if Enemy.isLeft:
-            self.image = pygame.transform.smoothscale(pygame.image.load("Explorer.png"), (100, 200)).convert_alpha()
+            self.image = pygame.transform.smoothscale(pygame.image.load("assets/Explorer.png"), (100, 200)).convert_alpha()
             self.x = 0
             self.y = random.randint(100, 720 - 200)
             self.facingLeft = False
             Enemy.isLeft = not Enemy.isLeft
         else: 
             #Flips and scales sprite image to face left
-            self.image = pygame.transform.flip(pygame.transform.smoothscale(pygame.image.load("Explorer.png"), (100, 200)), True, False).convert_alpha()
+            self.image = pygame.transform.flip(pygame.transform.smoothscale(pygame.image.load("assets/Explorer.png"), (100, 200)), True, False).convert_alpha()
             self.x = 1280
             self.y = random.randint(100, 720 - 200)
             self.facingLeft = True
@@ -192,15 +192,15 @@ class Projectile():
     #Class variable List that stores new instances of Projectile objects
     List = []
     #Loads sounds
-    sound = pygame.mixer.Sound("shot.ogg")
-    soundReload = pygame.mixer.Sound("gunReload.ogg")
+    sound = pygame.mixer.Sound("assets/shot.ogg")
+    soundReload = pygame.mixer.Sound("assets/gunReload.ogg")
     #Time counter used to limit how often players can shoot 
     time = 0.00
     #Defines reload time
     reloadTime = 1.00
 
     def __init__(self, player):
-        self.image = pygame.transform.smoothscale(pygame.image.load("Bullet.png"), (12, 12)).convert()
+        self.image = pygame.transform.smoothscale(pygame.image.load("assets/Bullet.png"), (12, 12)).convert()
        
         #Spawns projectiles on correct side of player
         if player.facingLeft:
@@ -275,13 +275,13 @@ def main():
     #Sets up screen caption and icon
     caption = "Polar simulator 2015"
     pygame.display.set_caption(caption)
-    pygame.display.set_icon(pygame.image.load("player.png"))
+    pygame.display.set_icon(pygame.image.load("assets/player.png"))
 
     #Declaring Variables
     score = 0
 
     #Load main Music
-    pygame.mixer.music.load("music.ogg")
+    pygame.mixer.music.load("assets/music.ogg")
     pygame.mixer.music.play(-1)
 
     while True:
@@ -300,7 +300,7 @@ def main():
 def startMenu():
     startRunning = True
     #Sets up screen, running, background
-    startBackground = pygame.image.load("opening.jpg").convert()
+    startBackground = pygame.image.load("assets/opening.jpg").convert()
     #Creates start button 
     introButton = Button()
 
@@ -331,7 +331,7 @@ def game():
     #bool to turn while loop on and off
     gameRunning = True
     #Sets up background
-    gameBackground = pygame.image.load("background.jpg").convert()
+    gameBackground = pygame.image.load("assets/background.jpg").convert()
     #Creates player object
     gamePlayer = Player()
     #Variable to keep track of score
@@ -382,7 +382,7 @@ def game():
 def gameOver(score):
     gameOverRunning = True
     #Variable set up
-    gameOverBackground = pygame.image.load("ending.jpg").convert()
+    gameOverBackground = pygame.image.load("assets/ending.jpg").convert()
     #Creates Score Text Object
     gameOverText = Text()
     #Updates score text to current score
