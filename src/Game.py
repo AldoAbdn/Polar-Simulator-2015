@@ -1,19 +1,22 @@
-import pygame
+import pygame, sys
 from Sprites import Enemy
 from UI import Button
 from pygame.locals import *
 pygame.init()
 
 class Game:
-    def __init__(self, fullscreen=True) -> None:
+    def __init__(self, fullscreen=True, fps=60) -> None:
         self.fullscreen = fullscreen
-        self.screen = pygame.display.set_mode((1280, 720), FULLSCREEN|DOUBLEBUF|HWSURFACE)
+        self.surface = pygame.display.set_mode((1280, 720), FULLSCREEN|DOUBLEBUF|HWSURFACE)
         #Sets up screen caption and icon
         self.caption = "Polar simulator 2015"
         pygame.display.set_caption(self.caption)
         pygame.display.set_icon(pygame.image.load("assets/player.png"))
         #Declaring Variables
         self.score = 0
+        self.fpsClock = pygame.time.Clock()
+        self.time = 0.00
+        self.fps = fps
         #Load main Music
         pygame.mixer.music.load("assets/music.ogg")
         pygame.mixer.music.play(-1)
@@ -30,37 +33,16 @@ class Game:
             #If game hasn't ended, Resets Enemy class list
             Enemy.reset()
 
-
-    #Displays start menu to user
-    #When user clicks button, function ends 
-    def startMenu(self):
-        startRunning = True
-        #Sets up screen, running, background
-        startBackground = pygame.image.load("assets/opening.jpg").convert()
-        #Creates start button 
-        introButton = Button()
-
-        while startRunning:
+    def runScreen(self, screen):
+        while screen.running:
             #Checks for events and stores them in local variables
-            startEvents = pygame.event.get()
-            startKey = pygame.key.get_pressed()
+            self.handleEvents()
+            self.handleKeyPresses()
+            #Blit to Screen
+            screen.run(self.surface)
+            #FPS
+            self.time = float(self.fpsClock.Clock.tick_busy_loop(self.fps) / 1000.00)
 
-            #Draws background image
-            screen.blit(startBackground, [0,0])
-
-            #Draws start button to screen
-            introButton.draw(screen)
-
-            #Checks to see if start button clicked
-            #If it is clicked, running set to false and next function will run
-            startRunning = introButton.clicked(startEvents)
-
-            #Checks for quit event
-            Quit(startEvents)
-            Fullscreen(startKey)
-
-            #Updates display
-            pygame.display.flip()
 
 
     def game():
@@ -151,7 +133,8 @@ class Game:
             pygame.display.flip()
 
     #Used to exit the game if x in pygame window is pressed
-    def Quit(events):
+    def handleEvents(self):
+        events = pygame.event.get()
         for event in events:
             if event.type == QUIT:
                 running = False
@@ -159,12 +142,12 @@ class Game:
                 sys.exit()
 
     #Used to make game fullscreen using F key
-    def Fullscreen(key):
+    def handleKeyPresses(self, key):
+        keys = pygame.key.get_pressed()
         if key[K_f]:
             #Tells python we mean the global fullscreen not a new local
-            global fullscreen
-            fullscreen = not fullscreen
-            if fullscreen:
+            self.fullscreen = not self.fullscreen
+            if self.fullscreen:
                 pygame.display.set_mode((1280, 720), FULLSCREEN|DOUBLEBUF|HWSURFACE)
             else:
                 pygame.display.set_mode((1280, 720), DOUBLEBUF|HWSURFACE)
