@@ -1,24 +1,26 @@
 import pygame
 
 class Screen:
-    def __init__(self, background, sprites, ui) -> None:
+    def __init__(self, background, sprites, ui, game) -> None:
         self.running = True
         self.background = pygame.image.load(background).convert()
         self.sprites = sprites
         self.ui = ui
+        self.game = game
 
-    def run(self, surface):
-        surface.blit(self.background, [0,0])
+    def run(self):
+        self.game.surface.blit(self.background, [0,0])
         self.draw()
         self.handleUi()
         self.handleSprites()
-        pygame.display.flip()
+        self.handleEvents()
+        self.handleKeyPresses()
 
     def draw(self):
         for ui in self.ui:
-            ui.draw()
+            ui.draw(self.game.surface)
         for sprites in self.sprites:
-            sprites.draw()
+            sprites.draw(self.game.surface)
 
     def handleUi(self):
         pass
@@ -26,6 +28,11 @@ class Screen:
     def handleSprites(self):
         pass
     
+    def handleEvents(self):
+        pass
+
+    def handleKeyPresses(self):
+        pass
 
         
     

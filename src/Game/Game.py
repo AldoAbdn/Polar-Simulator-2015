@@ -1,6 +1,6 @@
 import pygame, sys
 from Sprites import Enemy
-from UI import Button
+from Screens import StartMenu, GameOver
 from pygame.locals import *
 pygame.init()
 
@@ -17,6 +17,7 @@ class Game:
         self.fpsClock = pygame.time.Clock()
         self.time = 0.00
         self.fps = fps
+        self.screens = [StartMenu(self), GameOver(self)]
         #Load main Music
         pygame.mixer.music.load("assets/music.ogg")
         pygame.mixer.music.play(-1)
@@ -24,14 +25,25 @@ class Game:
     #Runs game loop            
     def run(self):
         while True:
-            #Displays start menu
-            self.startMenu()
-            #Runs game, stores returned score when completed
-            score = self.game()
-            #When the game is over, if user decides to play again true is returned and score is returned as 0
-            self.gameOver(score)
-            #If game hasn't ended, Resets Enemy class list
-            Enemy.reset()
+            for screen in self.screens:
+                while screen.running:
+                    #Checks for events and stores them in local variables
+                    self.handleEvents()
+                    self.handleKeyPresses()
+                    #Blit to Screen
+                    screen.run()
+                    #Update Display
+                    pygame.display.flip()
+                    #FPS
+                    self.time = float(self.fpsClock.Clock.tick_busy_loop(self.fps) / 1000.00)
+            # #Displays start menu
+            # self.startMenu()
+            # #Runs game, stores returned score when completed
+            # score = self.game()
+            # #When the game is over, if user decides to play again true is returned and score is returned as 0
+            # self.gameOver(score)
+            # #If game hasn't ended, Resets Enemy class list
+            # Enemy.reset()
 
     def runScreen(self, screen):
         while screen.running:
@@ -39,7 +51,7 @@ class Game:
             self.handleEvents()
             self.handleKeyPresses()
             #Blit to Screen
-            screen.run(self.surface)
+            screen.run(self)
             #FPS
             self.time = float(self.fpsClock.Clock.tick_busy_loop(self.fps) / 1000.00)
 
@@ -49,7 +61,7 @@ class Game:
         #bool to turn while loop on and off
         gameRunning = True
         #Sets up background
-        gameBackground = pygame.image.load("assets/background.jpg").convert()
+        gameBackground = 
         #Creates player object
         gamePlayer = Player()
         #Variable to keep track of score
@@ -95,42 +107,6 @@ class Game:
             Projectile.time += gameTime
 
         return gameScore
-
-    #Displays score to user and asks if they want to replay or quit
-    def gameOver(score):
-        gameOverRunning = True
-        #Variable set up
-        gameOverBackground = pygame.image.load("assets/ending.jpg").convert()
-        #Creates Score Text Object
-        gameOverText = Text()
-        #Updates score text to current score
-        gameOverText.updateText(str(score))
-
-        while gameOverRunning:
-            #Draws background image
-            screen.blit(gameOverBackground, [0,0])
-
-            #Draws score to screen
-            gameOverText.draw(screen)
-            
-            #Detect user input 
-            gameOverEvents = pygame.event.get()
-            gameOverKey = pygame.key.get_pressed()
-
-            #Checks for quit event
-            Quit(gameOverEvents)
-            #Checks for key press, if spacebar restart game
-            #If esc key game ends
-            if gameOverKey[pygame.K_SPACE]:
-                gameOverRunning = False
-            elif gameOverKey[pygame.K_ESCAPE]:
-                pygame.display.quit()
-                sys.exit()
-            #Toggles fullscreen
-            Fullscreen(gameOverKey)
-            
-            #Updates display
-            pygame.display.flip()
 
     #Used to exit the game if x in pygame window is pressed
     def handleEvents(self):

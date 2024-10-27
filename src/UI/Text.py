@@ -1,3 +1,5 @@
+import pygame
+
 #Class to create text objects to display text with no bg colour
 class Text:
     def __init__(self):
