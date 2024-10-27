@@ -1,4 +1,4 @@
-from Screen import Screen
+from Screens.Screen import Screen
 from Sprites.Player import Player
 from Sprites.Enemy import Enemy
 from Sprites.Projectile import Projectile
