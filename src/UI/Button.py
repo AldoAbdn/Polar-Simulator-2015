@@ -7,10 +7,10 @@ class Button(Text):
         Text.__init__(self, x, y, text, colour, font, size)
         self.text = text
         self.background = background
-        self.update(self, text)
+        self.updateTextWithBackground(text)
 
     #Used to change displayed text of an instance and update Rect object with new dimensions
-    def update(self, text):
+    def updateTextWithBackground(self, text):
         self.text = text
         self.surface = self.font.render(self.text, True, self.colour, self.background)
         self.rect = self.surface.get_rect(center = (self.x, self.y))
