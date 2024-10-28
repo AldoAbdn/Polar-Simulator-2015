@@ -12,7 +12,7 @@ class Game:
         #Sets up screen caption and icon
         self.caption = "Polar simulator 2015"
         pygame.display.set_caption(self.caption)
-        pygame.display.set_icon(pygame.image.load("assets/player.png"))
+        pygame.display.set_icon(pygame.image.load("../assets/player.png"))
         #Declaring Variables
         self.score = 0
         self.fpsClock = pygame.time.Clock()
@@ -20,7 +20,7 @@ class Game:
         self.fps = fps
         self.screens = [StartMenu(self), Fight(self), GameOver(self)]
         #Load main Music
-        pygame.mixer.music.load("assets/music.ogg")
+        pygame.mixer.music.load("../assets/music.ogg")
         pygame.mixer.music.play(-1)
 
     #Runs game loop            

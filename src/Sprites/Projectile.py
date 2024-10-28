@@ -1,20 +1,20 @@
 import pygame
-import Enemy
+from Sprites.Enemy import Enemy
 
 #Projectile Class to create Projectiles that are fired at Enemys
 class Projectile():
     #Class variable List that stores new instances of Projectile objects
     List = []
     #Loads sounds
-    sound = pygame.mixer.Sound("assets/shot.ogg")
-    soundReload = pygame.mixer.Sound("assets/gunReload.ogg")
+    sound = pygame.mixer.Sound("../assets/shot.ogg")
+    soundReload = pygame.mixer.Sound("../assets/gunReload.ogg")
     #Time counter used to limit how often players can shoot 
     time = 0.00
     #Defines reload time
     reloadTime = 1.00
 
     def __init__(self, player):
-        self.image = pygame.transform.smoothscale(pygame.image.load("assets/Bullet.png"), (12, 12)).convert()
+        self.image = pygame.transform.smoothscale(pygame.image.load("../assets/Bullet.png"), (12, 12)).convert()
        
         #Spawns projectiles on correct side of player
         if player.facingLeft:
