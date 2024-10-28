@@ -9,9 +9,6 @@ class Text:
         self.x = x
         self.y = y
         self.colour = colour
-        #self.colour = (255,0,0)
-        #self.x = 640
-        #self.y = 500
         #Creates and positions text surface and Rect object
         self.updateText(self.text)
 
