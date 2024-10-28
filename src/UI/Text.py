@@ -7,7 +7,7 @@ class Text:
         self.font = pygame.font.SysFont(font, size)
         self.text = text
         self.x = x
-        self.y = y, 
+        self.y = y
         self.colour = colour
         #self.colour = (255,0,0)
         #self.x = 640
