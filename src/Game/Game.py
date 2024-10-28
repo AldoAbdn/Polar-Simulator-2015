@@ -15,7 +15,7 @@ class Game:
         pygame.display.set_icon(pygame.image.load("../assets/player.png"))
         #Declaring Variables
         self.score = 0
-        self.fpsClock = pygame.time.Clock()
+        self.clock = pygame.time.Clock()
         self.time = 0.00
         self.fps = fps
         self.screens = [StartMenu(self), Fight(self), GameOver(self)]
@@ -36,7 +36,7 @@ class Game:
                     #Update Display
                     pygame.display.flip()
                     #FPS
-                    self.time = float(self.fpsClock.Clock.tick_busy_loop(self.fps) / 1000.00)
+                    self.time = float(self.clock.tick_busy_loop(self.fps) / 1000.00)
 
     #Used to exit the game if x in pygame window is pressed
     def handleEvents(self):
@@ -48,9 +48,9 @@ class Game:
                 sys.exit()
 
     #Used to make game fullscreen using F key
-    def handleKeyPresses(self, key):
+    def handleKeyPresses(self):
         keys = pygame.key.get_pressed()
-        if key[K_f]:
+        if keys[K_f]:
             #Tells python we mean the global fullscreen not a new local
             self.fullscreen = not self.fullscreen
             if self.fullscreen:
