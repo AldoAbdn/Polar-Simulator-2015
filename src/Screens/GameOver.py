@@ -6,7 +6,7 @@ class GameOver(Screen):
     def __init__(self, game) -> None:
         ui = [Text()] 
         ui[0].updateText(str(self.game.score))
-        super().__init__(pygame.image.load("../assets/ending.jpg").convert(), [], ui, game)
+        super().__init__("../assets/ending.jpg", [], ui, game)
 
     def handleKeyPresses(self):
         keys = pygame.key.get_pressed()

@@ -7,7 +7,7 @@ import pygame
 class Fight(Screen):
     def __init__(self, game) -> None:
         self.player = Player()
-        super().__init__(pygame.image.load("../assets/background.jpg").convert(), [self.player], [], game)
+        super().__init__("../assets/background.jpg", [self.player], [], game)
 
     def draw(self):
         super().draw()

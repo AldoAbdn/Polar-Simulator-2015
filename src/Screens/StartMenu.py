@@ -5,7 +5,7 @@ import pygame
 class StartMenu(Screen):
     def __init__(self, game) -> None:
         self.startButton = Button(640, 640, "START", (0,0,0), (255,0,0))
-        super().__init__(pygame.image.load("../assets/opening.jpg").convert(), [], [self.startButton], game)
+        super().__init__("../assets/opening.jpg", [], [self.startButton], game)
 
     def handleUi(self):
         self.running = self.startButton.clicked()
