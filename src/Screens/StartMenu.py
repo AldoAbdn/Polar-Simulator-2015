@@ -1,6 +1,5 @@
 from Screens.Screen import Screen
 from UI.Button import Button
-import pygame
 
 class StartMenu(Screen):
     def __init__(self, game) -> None:
@@ -8,4 +7,4 @@ class StartMenu(Screen):
         super().__init__("../assets/opening.jpg", [], [self.startButton], game)
 
     def handleUi(self):
-        self.running = self.startButton.clicked()
+        self.running = not self.startButton.clicked()

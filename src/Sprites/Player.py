@@ -19,8 +19,9 @@ class Player:
         screen.blit(self.image, self.rect)
 
     #Used to detect WASD presses, and them move character on screen
-    def move(self, key):
-        if key[pygame.K_a]:
+    def move(self):
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_a]:
             self.facingLeft = True
             self.image = self.leftImage
             #If sprite isnt at edge of screen, decreses x to move sprite
@@ -28,7 +29,7 @@ class Player:
                 self.x = self.x - self.speed
                 #Updates Rect with new position
                 self.rect.center = (self.x, self.y)
-        if key[pygame.K_d]:
+        if keys[pygame.K_d]:
             #Changes direction and sprite to right
             self.facingLeft = False
             self.image = self.rightImage
@@ -37,13 +38,13 @@ class Player:
                 self.x = self.x + self.speed
                 #Updates Rect to new position
                 self.rect.center = (self.x, self.y)
-        if key[pygame.K_w]:
+        if keys[pygame.K_w]:
             #Checks if y inst less than 100 or else prite would be drawn in water
             if self.y > 100:
                 self.y = self.y - self.speed
                 #Updates Rect with new y position
                 self.rect.center = (self.x, self.y)
-        if key[pygame.K_s]:
+        if keys[pygame.K_s]:
             #Checks to see if y is less than 520 or sprite would end up in 'water'
             if self.y < 520:
                 self.y = self.y + self.speed 

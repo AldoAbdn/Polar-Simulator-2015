@@ -23,5 +23,5 @@ class Button(Text):
             if event.type == pygame.MOUSEBUTTONUP:
                 mouseClick = pygame.mouse.get_pos()
                 if self.rect.collidepoint(mouseClick):
-                    return False
-        return True
+                    return True
+        return False
