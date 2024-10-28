@@ -4,7 +4,7 @@ import pygame, sys
 
 class GameOver(Screen):
     def __init__(self, game) -> None:
-        ui = [Text(500, 640, game.score, (255,0,0))]
+        ui = [Text(500, 640, str(game.score), (255,0,0))]
         super().__init__("../assets/ending.jpg", [], ui, game)
 
     def handleKeyPresses(self):
