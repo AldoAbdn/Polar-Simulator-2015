@@ -2,17 +2,21 @@ import pygame
 
 #Player class used to create playable character on screen
 class Player: 
-    def __init__(self):
+    def __init__(self, x, y):
         #Scales sprite and crates right and left facing images, sets direction and updates Rec 
         self.rightImage = pygame.transform.smoothscale(pygame.image.load("../assets/player.png"), (100, 200)).convert_alpha()
         self.leftImage = pygame.transform.flip(pygame.transform.smoothscale(pygame.image.load("../assets/player.png"), (100, 200)), True, False).convert_alpha()
         self.image = self.leftImage
         self.facingLeft = True
         self.speed = 5
-        self.x = 640
-        self.y = 400
+        self.x = x
+        self.y = y
         self.rect = self.image.get_rect(center = (self.x, self.y))
-        
+
+    def setRect(self, x, y):
+        self.x = x
+        self.y = y
+        self.rect = self.image.get_rect(center = (self.x, self.y))
 
     #Draws player to the screen
     def draw(self, screen):

@@ -6,7 +6,7 @@ import pygame
 
 class Fight(Screen):
     def __init__(self, game) -> None:
-        self.player = Player()
+        self.player = Player(640, 400)
         super().__init__("../assets/background.jpg", [self.player], [], game)
 
     def draw(self):
@@ -27,5 +27,6 @@ class Fight(Screen):
 
     def reset(self):
         Enemy.reset()
+        self.player.setRect(640, 400)
         return super().reset()
         

@@ -37,7 +37,7 @@ class Game:
                     pygame.display.flip()
                     #FPS
                     self.time = float(self.clock.tick_busy_loop(self.fps) / 1000.00)
-
+                screen.reset()
     #Used to exit the game if x in pygame window is pressed
     def handleEvents(self):
         self.events = pygame.event.get()
