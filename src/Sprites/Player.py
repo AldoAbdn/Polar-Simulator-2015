@@ -19,8 +19,7 @@ class Player:
         screen.blit(self.image, self.rect)
 
     #Used to detect WASD presses, and them move character on screen
-    def move(self):
-        keys = pygame.key.get_pressed()
+    def move(self, keys):
         if keys[pygame.K_a]:
             self.facingLeft = True
             self.image = self.leftImage

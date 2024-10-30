@@ -37,8 +37,8 @@ class Projectile():
         
     #Checks for spacebar press in list returned by pygame.key.get_pressed()    
     @classmethod
-    def generate(Class, key, player):
-        if key[pygame.K_e]:
+    def generate(Class, keys, player):
+        if keys[pygame.K_e]:
             if Class.time > Class.reloadTime:
                 Class.sound.play()
                 Class.soundReload.play()

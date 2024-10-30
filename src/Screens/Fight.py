@@ -17,7 +17,10 @@ class Fight(Screen):
     def handleSprites(self):
         self.running = Enemy.collide(self.player.rect)
         self.game.score += Projectile.collide()
+        self.player.move(self.game.keys)
         Enemy.generate()
-        Projectile.generate(self.player)
+        Projectile.generate(self.game.keys, self.player)
+        Enemy.move()
+        Projectile.move()
         Enemy.time += self.game.time
         Projectile.time += self.game.time

@@ -40,16 +40,16 @@ class Game:
 
     #Used to exit the game if x in pygame window is pressed
     def handleEvents(self):
-        events = pygame.event.get()
-        for event in events:
+        self.events = pygame.event.get()
+        for event in self.events:
             if event.type == QUIT:
                 pygame.display.quit()
                 sys.exit()
 
     #Used to make game fullscreen using F key
     def handleKeyPresses(self):
-        keys = pygame.key.get_pressed()
-        if keys[K_f]:
+        self.keys = pygame.key.get_pressed()
+        if self.keys[K_f]:
             #Tells python we mean the global fullscreen not a new local
             self.fullscreen = not self.fullscreen
             if self.fullscreen:

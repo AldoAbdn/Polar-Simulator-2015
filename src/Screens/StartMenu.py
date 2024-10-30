@@ -7,4 +7,4 @@ class StartMenu(Screen):
         super().__init__("../assets/opening.jpg", [], [self.startButton], game)
 
     def handleUi(self):
-        self.running = not self.startButton.clicked()
+        self.running = not self.startButton.clicked(self.game.events)

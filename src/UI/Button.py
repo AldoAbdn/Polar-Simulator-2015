@@ -16,8 +16,7 @@ class Button(Text):
         self.rect = self.surface.get_rect(center = (self.x, self.y))
 
     #Checks if Text object has been clicked and returns a value if clicked or if not
-    def clicked(self): 
-        events = pygame.event.get()
+    def clicked(self, events): 
         #Loops thourgh events looking for mouse up, then checks if mouseclick collides with Text object
         for event in events:
             if event.type == pygame.MOUSEBUTTONUP:

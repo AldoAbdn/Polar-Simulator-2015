@@ -20,7 +20,6 @@ class Screen:
         for ui in self.ui:
             ui.draw(self.game.surface)
         for sprites in self.sprites:
-            sprites.move()
             sprites.draw(self.game.surface)
 
     def handleUi(self):
