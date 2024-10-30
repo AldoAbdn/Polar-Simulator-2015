@@ -34,6 +34,9 @@ class Screen:
     def handleKeyPresses(self):
         pass
 
+    def reset(self):
+        self.running = True
+
         
     
         

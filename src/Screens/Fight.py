@@ -24,3 +24,8 @@ class Fight(Screen):
         Projectile.move()
         Enemy.time += self.game.time
         Projectile.time += self.game.time
+
+    def reset(self):
+        Enemy.reset()
+        return super().reset()
+        
