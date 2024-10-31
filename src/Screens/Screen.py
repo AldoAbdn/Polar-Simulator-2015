@@ -7,6 +7,10 @@ class Screen:
         self.sprites = sprites
         self.ui = ui
         self.game = game
+        self.score = 0
+
+    def preRun(self, score):
+        self.score = score
 
     def run(self):
         self.game.surface.blit(self.background, [0,0])

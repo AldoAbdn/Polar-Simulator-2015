@@ -16,7 +16,7 @@ class Fight(Screen):
 
     def handleSprites(self):
         self.running = Enemy.collide(self.player.rect)
-        self.game.score += Projectile.collide()
+        self.score += Projectile.collide()
         self.player.move(self.game.keys)
         Enemy.generate()
         Projectile.generate(self.game.keys, self.player)

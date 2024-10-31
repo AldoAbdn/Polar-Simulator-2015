@@ -27,6 +27,7 @@ class Game:
     def run(self):
         while True:
             for screen in self.screens:
+                screen.preRun(self.score)
                 while screen.running:
                     #Checks for events and stores them in local variables
                     self.handleEvents()
@@ -37,7 +38,9 @@ class Game:
                     pygame.display.flip()
                     #FPS
                     self.time = float(self.clock.tick_busy_loop(self.fps) / 1000.00)
+                self.score += screen.score
                 screen.reset()
+            self.score = 0
     #Used to exit the game if x in pygame window is pressed
     def handleEvents(self):
         self.events = pygame.event.get()
