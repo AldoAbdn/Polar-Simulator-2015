@@ -7,9 +7,9 @@ pygame.init()
 
 class Game:
     def __init__(self, fullscreen=True, fps=60) -> None:
+        #Sets up display surface
         self.fullscreen = fullscreen
         self.surface = pygame.display.set_mode((1280, 720), FULLSCREEN|DOUBLEBUF|HWSURFACE)
-        #Sets up screen caption and icon
         self.caption = "Polar simulator 2015"
         pygame.display.set_caption(self.caption)
         pygame.display.set_icon(pygame.image.load("../assets/player.png"))
@@ -29,7 +29,7 @@ class Game:
             for screen in self.screens:
                 screen.preRun(self.score)
                 while screen.running:
-                    #Checks for events and stores them in local variables
+                    #Checks for events
                     self.handleEvents()
                     self.handleKeyPresses()
                     #Blit to Screen
@@ -41,6 +41,7 @@ class Game:
                 self.score += screen.score
                 screen.reset()
             self.score = 0
+
     #Used to exit the game if x in pygame window is pressed
     def handleEvents(self):
         self.events = pygame.event.get()
